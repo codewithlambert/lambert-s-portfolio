@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useRouterState } from "@tanstack/react-router";
 import { SpiderMark } from "./SpiderMark";
 import { Menu, Home, LayoutGrid, User, Mail } from "lucide-react";
 import { useState } from "react";
@@ -13,6 +13,13 @@ const NAV_LINKS = [
 
 export function Navigation() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const routerState = useRouterState();
+  const currentPath = routerState.location.pathname;
+
+  const isActive = (path: string) => {
+    if (path === "/") return currentPath === "/";
+    return currentPath.startsWith(path);
+  };
 
   return (
     <>
@@ -97,24 +104,34 @@ export function Navigation() {
 
       {/* Mobile Bottom Nav */}
       <nav className="fixed inset-x-4 bottom-4 z-50 rounded-full border border-border bg-card/95 px-4 py-3 backdrop-blur lg:hidden">
-        <ul className="grid grid-cols-5">
+        <ul className="relative grid grid-cols-5">
           {[
             { label: "home", icon: Home, to: "/" },
             { label: "work", icon: LayoutGrid, to: "/work" },
             { label: "services", icon: LayoutGrid, to: "/services" },
             { label: "about", icon: User, to: "/about" },
             { label: "contact", icon: Mail, to: "/contact" },
-          ].map(({ label, icon: Icon, to }) => (
-            <li key={label}>
-              <Link
-                to={to}
-                className="flex flex-col items-center gap-1.5 text-xs text-muted-foreground [&.active]:text-foreground"
-              >
-                <Icon className="h-5 w-5" strokeWidth={1.6} />
-                {label}
-              </Link>
-            </li>
-          ))}
+          ].map(({ label, icon: Icon, to }) => {
+            const active = isActive(to);
+            return (
+              <li key={label} className="relative">
+                <Link
+                  to={to}
+                  className={`flex flex-col items-center gap-1.5 text-xs transition-colors ${
+                    active ? 'text-foreground' : 'text-muted-foreground'
+                  }`}
+                >
+                  <div className="relative">
+                    <Icon className="h-5 w-5" strokeWidth={1.6} />
+                    {active && (
+                      <div className="absolute -bottom-2 left-1/2 h-1 w-1 -translate-x-1/2 rounded-full bg-foreground animate-pulse" />
+                    )}
+                  </div>
+                  {label}
+                </Link>
+              </li>
+            );
+          })}
         </ul>
       </nav>
     </>

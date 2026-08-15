@@ -108,7 +108,7 @@ function ProjectCard({
         </div>
         <ArrowUpRight className="mt-6 h-5 w-5 sm:mt-8 shrink-0 text-foreground/80 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
       </div>
-      <div className="image-reveal relative overflow-hidden">
+      <div className="relative overflow-hidden">
         <img
           src={img}
           alt={`${title} preview`}
