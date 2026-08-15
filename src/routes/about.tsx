@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Navigation } from "@/components/Navigation";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import { useCounterAnimation } from "@/hooks/useCounterAnimation";
+import { StatCounter } from "@/components/StatCounter";
 
 const skills = ["javascript", "mysql", "postgresql", "rest apis", "git", "react", "node.js", "next.js", "typescript", "tailwind css", "supabase", "firebase", "groq api", "vercel", "cloudflare"];
 const experience = [
@@ -75,17 +75,10 @@ function AboutPage() {
         <section className="mb-16 scroll-fade-in">
           <p className="text-eyebrow mb-6">stats</p>
           <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
-            {[
-              ["2+", "years building"], 
-              ["5+", "projects shipped"], 
-              ["1", "live product"], 
-              ["40+", "users onboarded"]
-            ].map(([number, text], i) => (
-              <div key={text} className="group text-center scroll-fade-in" style={{ transitionDelay: `${i * 0.1}s` }}>
-                <p className="text-3xl font-bold transition-transform duration-300 group-hover:scale-110 sm:text-4xl">{number}</p>
-                <p className="mt-2 text-xs text-muted-foreground sm:text-sm">{text}</p>
-              </div>
-            ))}
+            <StatCounter end={2} suffix="+" label="years building" delay={0} />
+            <StatCounter end={5} suffix="+" label="projects shipped" delay={0.1} />
+            <StatCounter end={1} label="live product" delay={0.2} />
+            <StatCounter end={40} suffix="+" label="users onboarded" delay={0.3} />
           </div>
         </section>
 

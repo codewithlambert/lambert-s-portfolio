@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight, Star } from "lucide-react";
+import { useRef } from "react";
 
 import { SpiderWeb } from "@/components/SpiderWeb";
 import { Navigation } from "@/components/Navigation";
@@ -75,10 +76,30 @@ function ProjectCard({
   imgClass?: string;
   projectId: string;
 }) {
+  const cardRef = useRef<HTMLAnchorElement>(null);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 20;
+    const y = ((e.clientY - rect.top) / rect.height - 0.5) * 20;
+    cardRef.current.style.setProperty('--rotate-x', `${-y}deg`);
+    cardRef.current.style.setProperty('--rotate-y', `${x}deg`);
+  };
+
+  const handleMouseLeave = () => {
+    if (!cardRef.current) return;
+    cardRef.current.style.setProperty('--rotate-x', '0deg');
+    cardRef.current.style.setProperty('--rotate-y', '0deg');
+  };
+
   return (
     <Link
+      ref={cardRef}
       to={`/work/${projectId}`}
-      className="card-surface group grid grid-cols-[minmax(0,1fr)_42%] items-stretch overflow-hidden transition-colors hover:border-foreground/25 scroll-fade-in"
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className="card-surface tilt-card hover-lift group grid grid-cols-[minmax(0,1fr)_42%] items-stretch overflow-hidden transition-colors hover:border-foreground/25 scroll-fade-in"
     >
       <div className="flex min-w-0 flex-col justify-between p-4 sm:p-6">
         <div className="min-w-0">
@@ -87,12 +108,12 @@ function ProjectCard({
         </div>
         <ArrowUpRight className="mt-6 h-5 w-5 sm:mt-8 shrink-0 text-foreground/80 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
       </div>
-      <div className="relative overflow-hidden">
+      <div className="image-reveal relative overflow-hidden">
         <img
           src={img}
           alt={`${title} preview`}
           loading="lazy"
-          className={`absolute inset-0 h-full w-full ${imgClass || 'object-cover'} opacity-90 transition-all duration-300`}
+          className={`absolute inset-0 h-full w-full ${imgClass || 'object-cover'} opacity-90 grayscale brightness-75 transition-all duration-300 group-hover:grayscale-0 group-hover:brightness-100`}
         />
       </div>
     </Link>
