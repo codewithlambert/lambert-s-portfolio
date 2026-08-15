@@ -1,6 +1,7 @@
-import { createFileRoute, Outlet, useMatchRoute } from "@tanstack/react-router";
+import { createFileRoute, Link, Outlet, useMatchRoute } from "@tanstack/react-router";
 import { ArrowUpRight, Star } from "lucide-react";
 import { Navigation } from "@/components/Navigation";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 export const Route = createFileRoute("/work")({
   head: () => ({
@@ -50,12 +51,14 @@ function WorkPage() {
   const matchRoute = useMatchRoute();
   const isCaseStudy = matchRoute({ to: "/work/$projectId", fuzzy: false });
 
+  useScrollAnimation();
+
   if (isCaseStudy) {
     return <Outlet />;
   }
 
   return (
-    <div className="min-h-screen bg-background pb-28 lg:pb-0">
+    <div className="min-h-screen bg-background pb-28 lg:pb-0 page-transition">
       <Navigation />
       
       <main className="mx-auto max-w-[1400px] px-5 py-24 sm:px-8 lg:px-10">
@@ -71,9 +74,9 @@ function WorkPage() {
         </div>
 
         {/* Featured Project */}
-        <a
-          href={`/work/${PROJECTS[0].projectId}`}
-          className="card-surface group mb-8 grid grid-cols-1 overflow-hidden md:grid-cols-[minmax(0,1fr)_1.15fr]"
+        <Link
+          to={`/work/${PROJECTS[0].projectId}`}
+          className="card-surface group mb-8 grid grid-cols-1 overflow-hidden md:grid-cols-[minmax(0,1fr)_1.15fr] scroll-fade-in"
         >
           <div className="flex flex-col p-6 sm:p-8">
             <span className="inline-flex w-fit items-center gap-2 rounded-md bg-secondary px-3 py-1.5 text-sm text-foreground">
@@ -87,7 +90,7 @@ function WorkPage() {
               {PROJECTS[0].desc}
             </p>
             <span className="mt-10 inline-flex items-center gap-3 text-[0.95rem]">
-              view case
+              view case study
               <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
             </span>
           </div>
@@ -96,25 +99,25 @@ function WorkPage() {
               src={PROJECTS[0].img}
               alt={`${PROJECTS[0].title} preview`}
               loading="lazy"
-              className="absolute inset-0 h-full w-full object-cover object-left-top opacity-90"
+              className="absolute inset-0 h-full w-full object-cover object-left-top opacity-90 transition-all duration-300"
             />
           </div>
-        </a>
+        </Link>
 
         {/* Other Projects Grid */}
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
           {PROJECTS.slice(1).map((project) => (
-            <a
+            <Link
               key={project.title}
-              href={`/work/${project.projectId}`}
-              className="card-surface group grid grid-cols-[minmax(0,1fr)_42%] items-stretch overflow-hidden transition-colors hover:border-foreground/25 sm:grid-cols-1"
+              to={`/work/${project.projectId}`}
+              className="card-surface group grid grid-cols-[minmax(0,1fr)_42%] items-stretch overflow-hidden transition-colors hover:border-foreground/25 sm:grid-cols-1 scroll-fade-in"
             >
               <div className="relative aspect-[4/3] overflow-hidden sm:order-1">
                 <img
                   src={project.img}
                   alt={`${project.title} preview`}
                   loading="lazy"
-                  className="absolute inset-0 h-full w-full object-cover opacity-90 transition-opacity group-hover:opacity-100"
+                  className="absolute inset-0 h-full w-full object-cover opacity-90 transition-all duration-300"
                 />
               </div>
               <div className="flex flex-col justify-between p-5 sm:order-2 sm:p-6">
@@ -131,7 +134,7 @@ function WorkPage() {
                   <ArrowUpRight className="h-4 w-4 shrink-0 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                 </span>
               </div>
-            </a>
+            </Link>
           ))}
         </div>
       </main>

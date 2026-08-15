@@ -1,9 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowUpRight, Star, Home, LayoutGrid, User, Mail } from "lucide-react";
+import { ArrowUpRight, Star } from "lucide-react";
 
 import { SpiderWeb } from "@/components/SpiderWeb";
 import { Navigation } from "@/components/Navigation";
 import { TechStackMarquee } from "@/components/TechStackMarquee";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -24,7 +25,13 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const SMALL_PROJECTS = [
+const PROJECTS = [
+  {
+    title: "lynktern",
+    desc: "siwes platform for nigerian students.",
+    img: "/shot-lynktern.png",
+    projectId: "lynktern",
+  },
   {
     title: "aesthura",
     desc: "interior design portfolio and booking platform.",
@@ -46,12 +53,13 @@ const SMALL_PROJECTS = [
     imgClass: "object-cover object-top",
     projectId: "classiq-store",
   },
-];
-
-const HOME_FAQS = [
-  { question: "what do you build?", answer: "full-stack products, thoughtful websites, and workflows that solve a clear problem." },
-  { question: "what are you focused on now?", answer: "building lynktern and continuing to ship useful, product-led work." },
-  { question: "where are you based?", answer: "port harcourt, nigeria." },
+  {
+    title: "nxlstchz",
+    desc: "crocheted streetwear brand platform.",
+    img: "/shot-nxlstchz.png",
+    imgClass: "object-cover",
+    projectId: "nxlstchz",
+  },
 ];
 
 function ProjectCard({
@@ -64,37 +72,39 @@ function ProjectCard({
   title: string;
   desc: string;
   img: string;
-  imgClass: string;
+  imgClass?: string;
   projectId: string;
 }) {
   return (
-    <a
-      href={`/work/${projectId}`}
-      className="card-surface group grid grid-cols-[minmax(0,1fr)_42%] items-stretch overflow-hidden transition-colors hover:border-foreground/25"
+    <Link
+      to={`/work/${projectId}`}
+      className="card-surface group grid grid-cols-[minmax(0,1fr)_42%] items-stretch overflow-hidden transition-colors hover:border-foreground/25 scroll-fade-in"
     >
       <div className="flex min-w-0 flex-col justify-between p-4 sm:p-6">
         <div className="min-w-0">
           <h3 className="text-lg font-semibold tracking-tight sm:text-2xl">{title}</h3>
           <p className="mt-2 text-[0.8rem] text-muted-foreground sm:max-w-[18ch] sm:text-sm">{desc}</p>
         </div>
-        <span className="mt-6 inline-flex items-center gap-2 text-sm sm:mt-8">view case <ArrowUpRight className="h-4 w-4 shrink-0 text-foreground/80 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" /></span>
+        <ArrowUpRight className="mt-6 h-5 w-5 sm:mt-8 shrink-0 text-foreground/80 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
       </div>
       <div className="relative overflow-hidden">
         <img
           src={img}
           alt={`${title} preview`}
           loading="lazy"
-          className={`absolute inset-0 h-full w-full ${imgClass} opacity-90 transition-opacity group-hover:opacity-100`}
+          className={`absolute inset-0 h-full w-full ${imgClass || 'object-cover'} opacity-90 transition-all duration-300`}
         />
       </div>
-    </a>
+    </Link>
   );
 }
 
+
 function Index() {
+  useScrollAnimation();
+
   return (
-    <div className="min-h-screen bg-background pb-28 lg:pb-0">
-      {/* header */}
+    <div className="min-h-screen bg-background pb-28 lg:pb-0 page-transition">
       <Navigation />
 
       <main id="top" className="mx-auto max-w-[1400px] px-5 sm:px-8 lg:px-10">
@@ -133,7 +143,7 @@ function Index() {
         {/* Tech Stack Marquee */}
         <TechStackMarquee />
 
-        {/* selected work */}
+        {/* featured work */}
         <section id="work" className="relative mt-24 lg:mt-16">
           <div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4">
             <p className="text-eyebrow truncate">— selected work</p>
@@ -146,10 +156,10 @@ function Index() {
             </Link>
           </div>
 
-          {/* featured */}
-          <a
-            href="/work/lynktern"
-            className="card-surface group mt-5 grid grid-cols-1 overflow-hidden md:grid-cols-[minmax(0,1fr)_1.15fr]"
+          {/* Featured - Lynktern (always visible) */}
+          <Link
+            to="/work/lynktern"
+            className="card-surface group mt-5 grid grid-cols-1 overflow-hidden md:grid-cols-[minmax(0,1fr)_1.15fr] scroll-fade-in"
           >
             <div className="flex flex-col p-6 sm:p-8">
               <span className="inline-flex w-fit items-center gap-2 rounded-md bg-secondary px-3 py-1.5 text-sm text-foreground">
@@ -161,7 +171,7 @@ function Index() {
                 siwes platform for nigerian students.
               </p>
               <span className="mt-10 inline-flex items-center gap-3 text-[0.95rem] lg:mt-auto">
-                view case
+                view case study
                 <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
               </span>
             </div>
@@ -170,31 +180,24 @@ function Index() {
                 src="/shot-lynktern.png"
                 alt="lynktern dashboard preview"
                 loading="lazy"
-                className="absolute inset-0 h-full w-full object-cover object-left-top opacity-90"
+                className="absolute inset-0 h-full w-full object-cover object-left-top opacity-90 transition-all duration-300"
               />
             </div>
-          </a>
+          </Link>
 
-          {/* small projects + about */}
-          <div className="mt-5 grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-3">
-            {SMALL_PROJECTS.map((p) => (
+          {/* Other projects - Hidden on mobile, visible on desktop */}
+          <div className="mt-5 hidden grid-cols-2 gap-4 sm:gap-5 lg:grid lg:grid-cols-3">
+            {PROJECTS.slice(1).map((p) => (
               <ProjectCard key={p.title} {...p} />
             ))}
           </div>
 
-          <div className="mt-5 grid grid-cols-1 gap-4 sm:gap-5 lg:grid-cols-2">
-            <ProjectCard
-              title="nxlstchz"
-              desc="crocheted streetwear brand platform."
-              img="/shot-nxlstchz.png"
-              imgClass="object-cover"
-              projectId="nxlstchz"
-            />
-
+          {/* About section */}
+          <div className="mt-5">
             <Link
               id="about"
               to="/about"
-              className="card-surface relative overflow-hidden p-6 sm:p-8"
+              className="card-surface relative overflow-hidden p-6 sm:p-8 scroll-fade-in block"
               aria-label="about"
             >
               <img
@@ -206,38 +209,17 @@ function Index() {
               <div className="relative">
                 <p className="text-eyebrow">— about</p>
                 <p className="mt-5 max-w-[34ch] text-[1.05rem] leading-relaxed text-foreground/90">
-                  a full-stack developer focused on systems how things work, connect, and hold up beyond the surface. currently building lynktern.
+                  i build digital systems and experiences. focused on clean code, minimal design and
+                  real impact.
                 </p>
-                <p className="mt-4 max-w-[34ch] text-sm leading-relaxed text-muted-foreground">
-                  outside of that? design, graphics, whatever the moment demands. not planned. just learned by doing. still early. still building. still having fun with it. backed by God.
-                </p>
-                <span className="mt-6 inline-flex items-center gap-2 text-sm">read more <ArrowUpRight className="h-4 w-4" /></span>
               </div>
             </Link>
           </div>
         </section>
 
-        <section className="mt-24 border-t border-white/10 py-16 lg:mt-32">
-          <p className="text-eyebrow">— testimonials</p>
-          <h2 className="mt-4 text-4xl font-bold tracking-tight sm:text-5xl">built with care.<br />feedback to follow.</h2>
-          <div className="mt-8 rounded-xl border border-dashed border-white/10 p-6 sm:p-8">
-            <p className="max-w-2xl text-lg text-muted-foreground">i’ll add client and collaborator feedback here when it is ready to share with their permission.</p>
-          </div>
-        </section>
-
-        <section className="border-t border-white/10 py-16">
-          <p className="text-eyebrow">— faq</p>
-          <h2 className="mt-4 text-4xl font-bold tracking-tight sm:text-5xl">a few things,<br />answered.</h2>
-          <div className="mt-8 divide-y divide-white/10 border-y border-white/10">
-            {HOME_FAQS.map((faq) => (
-              <details key={faq.question} className="group py-5">
-                <summary className="cursor-pointer list-none font-medium">{faq.question}<span className="float-right text-muted-foreground transition-transform group-open:rotate-45">+</span></summary>
-                <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">{faq.answer}</p>
-              </details>
-            ))}
-          </div>
-        </section>
-
+        <footer id="contact" className="mt-16 hidden pb-10 text-eyebrow lg:block">
+          — © 2026 lambert. all rights reserved.
+        </footer>
       </main>
     </div>
   );

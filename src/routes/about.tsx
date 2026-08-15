@@ -1,25 +1,171 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Navigation } from "@/components/Navigation";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
-const skills = ["next.js", "react", "typescript", "tailwind css", "supabase", "postgres", "firebase", "groq api", "vercel", "cloudflare"];
-const experience = [["builder", "lynktern", "2026 — present"], ["intern", "niit port harcourt", "2025"], ["freelance developer", "independent", "2024 — present"]];
-const strengths = [{ title: "systems thinking", text: "I think in flows, not pages how data moves, how users behave, and how systems scale." }, { title: "product mindset", text: "I don’t build isolated projects. I build things people can actually use." }, { title: "full-stack execution", text: "from idea → design → backend → deployment. i don’t stop halfway." }, { title: "ownership", text: "I build independently. what ships reflects my decisions good or bad." }];
-const faqs = [{ q: "what are you building right now?", a: "lynktern A platform improving how students manage siwes and internships in nigeria." }, { q: "what kind of work do you take on?", a: "product-focused websites and full-stack systems where the workflow matters as much as the interface." }, { q: "where are you based?", a: "port harcourt, nigeria." }];
+const skills = ["javascript", "mysql", "postgresql", "rest apis", "git", "react", "node.js", "next.js", "typescript", "tailwind css", "supabase", "firebase", "groq api", "vercel", "cloudflare"];
+const experience = [
+  ["builder", "lynktern", "2026 — present"], 
+  ["intern", "niit port harcourt", "2025"], 
+  ["freelance developer", "independent", "2024 — present"]
+];
+const strengths = [
+  { title: "systems thinking", text: "I think in flows, not pages: how data moves, how users behave, and how systems scale." }, 
+  { title: "product mindset", text: "I don't build isolated projects. I build things people can actually use." }, 
+  { title: "full-stack execution", text: "From idea to design to backend to deployment. I don't stop halfway." }, 
+  { title: "ownership", text: "I build independently. What ships reflects my decisions, good or bad." }
+];
 
-export const Route = createFileRoute("/about")({ head: () => ({ meta: [{ title: "about — lambert." }, { name: "description", content: "About lambert, a full-stack developer building systems in silence" }] }), component: AboutPage });
-
-function Section({ label, children }: { label: string; children: React.ReactNode }) { return <section className="border-t border-white/10 py-12 sm:py-16"><p className="text-eyebrow">— {label}</p>{children}</section>; }
+export const Route = createFileRoute("/about")({ 
+  head: () => ({ 
+    meta: [
+      { title: "about — lambert." }, 
+      { name: "description", content: "About lambert, a full-stack developer building systems in silence" }
+    ] 
+  }), 
+  component: AboutPage 
+});
 
 function AboutPage() {
-  return <div className="min-h-screen bg-background pb-28 lg:pb-0"><Navigation /><main className="mx-auto max-w-4xl px-5 py-24 sm:px-8">
-    <header className="mb-20"><p className="text-eyebrow">About</p><div className="mt-4 grid gap-10 lg:grid-cols-[minmax(0,1fr)_0.8fr] lg:items-start"><div><h1 className="text-5xl font-extrabold tracking-tight sm:text-6xl">still early.<br />already building.</h1><div className="mt-8 space-y-5 text-lg leading-relaxed text-muted-foreground"><p>I didn’t get into tech because it was trending. I got into it because i wanted to understand how things work and eventually build my own.</p><p>I’m currently a computer science student, but most of what I’ve learnt came from building breaking things, fixing them, and figuring out why they broke in the first place.</p><p>over time, that turned into platforms for students, logistics workflows, brand websites, and products that go beyond just interfaces.</p><p>right now, I’m building lynktern a platform focused on fixing how students manage siwes and internships in Nigeria.</p><p>I don’t just write code. I think through systems, workflows, and how people actually use what i build.</p></div></div><div className="lg:pt-2"><video autoPlay muted loop playsInline preload="metadata" className="aspect-[4/5] w-full rounded-xl border border-white/10 bg-secondary object-cover"><source src="/Lambert.mp4" type="video/mp4" /></video><p className="mt-3 text-sm text-muted-foreground">port harcourt, nigeria</p></div></div></header>
-    <Section label="stats"><div className="grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-white/10 bg-white/10 sm:grid-cols-4">{[["2+", "years building"], ["5+", "projects shipped"], ["5", "Live products"], ["80+", "users onboarded"]].map(([number, text]) => <div key={text} className="bg-background p-5 sm:p-6"><p className="text-3xl font-bold">{number}</p><p className="mt-1 text-sm text-muted-foreground">{text}</p></div>)}</div></Section>
-    <Section label="skills"><div className="flex flex-wrap gap-2">{skills.map((skill) => <span key={skill} className="rounded-full border border-white/10 px-3 py-2 text-sm text-muted-foreground">{skill}</span>)}</div></Section>
-    <Section label="experience"><div className="overflow-x-auto"><table className="w-full min-w-[560px] text-left text-sm"><thead className="border-b border-white/10 text-muted-foreground"><tr><th className="pb-3 font-normal">role</th><th className="pb-3 font-normal">company</th><th className="pb-3 font-normal">year</th></tr></thead><tbody>{experience.map(([role, company, year]) => <tr key={role} className="border-b border-white/10"><td className="py-4">{role}</td><td className="py-4">{company}</td><td className="py-4 text-muted-foreground">{year}</td></tr>)}</tbody></table></div></Section>
-    <Section label="philosophy"><blockquote className="max-w-3xl whitespace-pre-line text-2xl font-medium leading-relaxed sm:text-3xl">“I don’t build for the sake of building. every project starts with a problem I’ve seen or experienced.{"\n\n"}most systems fail because they look good but don’t hold up in real use. I focus on building things that actually work even when no one is watching.{"\n\n"}I’d rather ship something real than polish something that doesn’t matter.”</blockquote></Section>
-    <Section label="what i bring"><h2 className="mt-4 text-4xl font-bold tracking-tight">more than just code.</h2><p className="mt-4 max-w-2xl text-lg text-muted-foreground">i’m not just focused on writing features I focus on how everything connects.</p><div className="mt-10 grid gap-4 sm:grid-cols-2">{strengths.map((item) => <article key={item.title} className="rounded-xl border border-white/10 p-5"><h3 className="font-semibold">{item.title}</h3><p className="mt-3 text-sm leading-relaxed text-muted-foreground">{item.text}</p></article>)}</div></Section>
-    <Section label="testimonials"><div className="rounded-xl border border-dashed border-white/10 p-6"><p className="text-lg">real feedback, when it is ready to share.</p><p className="mt-2 text-sm text-muted-foreground">testimonials will be published here with permission from the people and teams involved.</p></div></Section>
-    <Section label="faq"><div className="divide-y divide-white/10 border-y border-white/10">{faqs.map((item) => <details key={item.q} className="group py-5"><summary className="cursor-pointer list-none font-medium">{item.q}<span className="float-right text-muted-foreground group-open:rotate-45">+</span></summary><p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">{item.a}</p></details>)}</div></Section>
-    <p className="pb-6 text-center text-xl font-medium text-muted-foreground">still early. still building. still having fun with it.<br />backed by God.</p>
-  </main></div>;
+  useScrollAnimation();
+
+  return (
+    <div className="min-h-screen bg-background pb-28 lg:pb-0 page-transition">
+      <Navigation />
+      
+      <main className="mx-auto max-w-6xl px-5 py-24 sm:px-8">
+        {/* Header */}
+        <header className="mb-20">
+          <p className="text-eyebrow">about</p>
+          <div className="mt-6 grid gap-12 lg:grid-cols-[1.5fr_1fr] lg:items-start">
+            <div>
+              <h1 className="text-5xl font-extrabold tracking-tight sm:text-6xl lg:text-7xl">
+                still early.<br />already building.
+              </h1>
+              <div className="mt-8 space-y-5 text-lg leading-relaxed text-muted-foreground">
+                <p>I didn't get into tech because it was trending. I got into it because I wanted to understand how things work, and eventually build my own.</p>
+                <p>I'm currently a computer science student, but most of what I've learned came from building: breaking things, fixing them, and figuring out why they broke in the first place.</p>
+                <p>Right now, I'm building <span className="text-foreground font-medium">lynktern</span>, a platform focused on fixing how students manage SIWES and internships in Nigeria.</p>
+              </div>
+            </div>
+            
+            {/* Profile Card with Glassmorphism */}
+            <div className="p-6 scroll-fade-in">
+              <div className="aspect-[4/5] mb-4 flex items-center justify-center rounded-lg border border-white/10 bg-secondary/50">
+                <p className="text-sm text-muted-foreground">video placeholder</p>
+              </div>
+              <p className="text-sm text-muted-foreground">port harcourt, nigeria</p>
+              <p className="mt-1 text-xs text-muted-foreground/60">backed by God.</p>
+            </div>
+          </div>
+        </header>
+
+        {/* Stats Grid */}
+        <section className="mb-16 scroll-fade-in">
+          <p className="text-eyebrow mb-6">stats</p>
+          <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
+            {[
+              ["2+", "years building"], 
+              ["5+", "projects shipped"], 
+              ["1", "live product"], 
+              ["40+", "users onboarded"]
+            ].map(([number, text], i) => (
+              <div key={text} className="group text-center scroll-fade-in" style={{ transitionDelay: `${i * 0.1}s` }}>
+                <p className="text-3xl font-bold transition-transform duration-300 group-hover:scale-110 sm:text-4xl">{number}</p>
+                <p className="mt-2 text-xs text-muted-foreground sm:text-sm">{text}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Skills */}
+        <section className="mb-16 scroll-fade-in">
+          <p className="text-eyebrow mb-6">skills</p>
+          <div className="flex flex-wrap gap-3">
+            {skills.map((skill) => (
+              <span 
+                key={skill} 
+                className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-muted-foreground transition-all hover:border-white/20 hover:bg-white/10 hover:text-foreground"
+              >
+                {skill}
+              </span>
+            ))}
+          </div>
+        </section>
+
+        {/* Experience Table */}
+        <section className="mb-16 scroll-fade-in">
+          <p className="text-eyebrow mb-6">experience</p>
+          <div className="glass-card overflow-hidden">
+            <div className="overflow-x-auto">
+              <table className="w-full min-w-[560px] text-left text-sm">
+                <thead className="border-b border-white/10">
+                  <tr>
+                    <th className="px-6 py-4 font-medium text-muted-foreground">role</th>
+                    <th className="px-6 py-4 font-medium text-muted-foreground">company</th>
+                    <th className="px-6 py-4 font-medium text-muted-foreground">year</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {experience.map(([role, company, year], i) => (
+                    <tr key={role} className={i !== experience.length - 1 ? "border-b border-white/5" : ""}>
+                      <td className="px-6 py-4 font-medium">{role}</td>
+                      <td className="px-6 py-4">{company}</td>
+                      <td className="px-6 py-4 text-muted-foreground">{year}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        {/* Philosophy */}
+        <section className="mb-16 scroll-fade-in">
+          <p className="text-eyebrow mb-6">philosophy</p>
+          <div className="glass-card p-8 sm:p-10">
+            <blockquote className="space-y-6 text-xl font-medium leading-relaxed sm:text-2xl">
+              <p>"I don't build for the sake of building. Every project starts with a problem I've seen or experienced.</p>
+              <p>Most systems fail because they look good but don't hold up in real use. I focus on building things that actually work, even when no one is watching.</p>
+              <p>I'd rather ship something real than polish something that doesn't matter."</p>
+            </blockquote>
+          </div>
+        </section>
+
+        {/* What I Bring */}
+        <section className="mb-16 scroll-fade-in">
+          <p className="text-eyebrow mb-6">what i bring</p>
+          <h2 className="mb-4 text-3xl font-bold tracking-tight sm:text-4xl">more than just code.</h2>
+          <p className="mb-10 max-w-2xl text-lg text-muted-foreground">
+            I'm not just focused on writing features. I focus on how everything connects.
+          </p>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {strengths.map((item, i) => (
+              <div key={item.title} className="tile scroll-fade-in" style={{ transitionDelay: `${i * 0.1}s` }}>
+                <h3 className="text-lg font-semibold">{item.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{item.text}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Testimonials */}
+        <section className="mb-16 scroll-fade-in">
+          <p className="text-eyebrow mb-6">testimonials</p>
+          <div className="text-center">
+            <p className="text-lg font-medium">Real feedback, when it is ready to share.</p>
+            <p className="mt-3 text-sm text-muted-foreground">
+              Testimonials will be published here with permission from the people and teams involved.
+            </p>
+          </div>
+        </section>
+
+        {/* Final Statement */}
+        <div className="scroll-fade-in text-center">
+          <p className="text-xl font-medium text-muted-foreground sm:text-2xl">
+            still early. still building. still having fun with it.
+          </p>
+        </div>
+      </main>
+    </div>
+  );
 }
