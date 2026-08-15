@@ -65,7 +65,8 @@ function AboutPage() {
                   }}
                 />
               </div>
-              <p className="text-sm text-muted-foreground">port harcourt, nigeria</p>
+              <h3 className="text-base font-semibold text-foreground">DORBOROBARI SAMUEL LAMBERTt</h3>
+              <p className="mt-1 text-sm text-muted-foreground">port harcourt, nigeria</p>
               <p className="mt-1 text-xs text-muted-foreground/60">backed by God.</p>
             </div>
           </div>
@@ -78,7 +79,7 @@ function AboutPage() {
             <StatCounter end={2} suffix="+" label="years building" delay={0} />
             <StatCounter end={5} suffix="+" label="projects shipped" delay={0.1} />
             <StatCounter end={1} label="live product" delay={0.2} />
-            <StatCounter end={40} suffix="+" label="users onboarded" delay={0.3} />
+            <StatCounter end={80} suffix="+" label="users onboarded" delay={0.3} />
           </div>
         </section>
 

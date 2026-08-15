@@ -128,7 +128,7 @@ export function Navigation() {
                       damping: 30,
                       mass: 0.7,
                     }}
-                    className="absolute inset-0 rounded-[18px] rounded-tl-[28px] rounded-br-[28px] bg-[#e50914] shadow-[0_0_30px_rgba(229,9,20,0.4)]"
+                    className="absolute inset-0 rounded-[18px] rounded-tl-[28px] rounded-br-[28px] bg-white shadow-[0_0_30px_rgba(255,255,255,0.4)]"
                   >
                     {/* Web detail */}
                     <div className="absolute inset-0 overflow-hidden rounded-[18px] rounded-tl-[28px] rounded-br-[28px] opacity-10">
@@ -139,28 +139,21 @@ export function Navigation() {
                       >
                         <path
                           d="M50 30 L50 0 M50 30 L50 60 M50 30 L0 30 M50 30 L100 30"
-                          stroke="black"
+                          stroke="white"
                           strokeWidth="0.7"
                         />
                         <circle
                           cx="50"
                           cy="30"
                           r="12"
-                          stroke="black"
+                          stroke="white"
                           strokeWidth="0.7"
                         />
                         <circle
                           cx="50"
                           cy="30"
                           r="24"
-                          stroke="black"
-                          strokeWidth="0.7"
-                        />
-                        <circle
-                          cx="50"
-                          cy="30"
-                          r="38"
-                          stroke="black"
+                          stroke="white"
                           strokeWidth="0.7"
                         />
                       </svg>
@@ -178,7 +171,7 @@ export function Navigation() {
                     damping: 25,
                   }}
                   className={`relative z-10 flex h-12 items-center justify-center gap-2 px-3 text-xs font-medium ${
-                    active ? "text-black" : "text-white/45"
+                    active ? "text-[#CFCFCF]" : "text-white/45"
                   }`}
                 >
                   <Icon size={19} strokeWidth={active ? 2.5 : 1.8} />
