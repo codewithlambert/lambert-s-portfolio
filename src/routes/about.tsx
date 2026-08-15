@@ -50,8 +50,19 @@ function AboutPage() {
             
             {/* Profile Card with Glassmorphism */}
             <div className="p-6 scroll-fade-in">
-              <div className="aspect-[4/5] mb-4 flex items-center justify-center rounded-lg border border-white/10 bg-secondary/50">
-                <p className="text-sm text-muted-foreground">video placeholder</p>
+              <div className="aspect-[4/5] mb-4 overflow-hidden rounded-lg border border-white/10 bg-secondary/50">
+                <video 
+                  src="/Lambert.mp4" 
+                  autoPlay 
+                  loop 
+                  muted 
+                  playsInline
+                  className="h-full w-full object-cover"
+                  onError={(e) => {
+                    console.error('Video failed to load:', e);
+                    (e.target as HTMLVideoElement).style.display = 'none';
+                  }}
+                />
               </div>
               <p className="text-sm text-muted-foreground">port harcourt, nigeria</p>
               <p className="mt-1 text-xs text-muted-foreground/60">backed by God.</p>
