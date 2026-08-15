@@ -1,7 +1,8 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { SpiderMark } from "./SpiderMark";
-import { Menu, Home, LayoutGrid, User, Mail } from "lucide-react";
+import { Menu, Home, LayoutGrid, User, Mail, Sparkles } from "lucide-react";
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 const NAV_LINKS = [
   { label: "home", to: "/" },
@@ -102,37 +103,114 @@ export function Navigation() {
         </div>
       )}
 
-      {/* Mobile Bottom Nav */}
-      <nav className="fixed inset-x-4 bottom-4 z-50 rounded-full border border-border bg-card/95 px-4 py-3 backdrop-blur lg:hidden">
-        <ul className="relative grid grid-cols-5">
+      {/* Mobile Bottom Nav - iOS Style with Animated Bubble */}
+      <nav className="fixed bottom-5 left-1/2 z-50 w-[calc(100%-32px)] max-w-md -translate-x-1/2 rounded-[28px] border border-white/10 bg-black/70 p-2 shadow-[0_20px_60px_rgba(0,0,0,0.45)] backdrop-blur-2xl lg:hidden">
+        <div className="relative flex items-center justify-between">
           {[
             { label: "home", icon: Home, to: "/" },
             { label: "work", icon: LayoutGrid, to: "/work" },
-            { label: "services", icon: LayoutGrid, to: "/services" },
             { label: "about", icon: User, to: "/about" },
             { label: "contact", icon: Mail, to: "/contact" },
           ].map(({ label, icon: Icon, to }) => {
             const active = isActive(to);
             return (
-              <li key={label} className="relative">
-                <Link
-                  to={to}
-                  className={`flex flex-col items-center gap-1.5 text-xs transition-colors ${
-                    active ? 'text-foreground' : 'text-muted-foreground'
+              <Link
+                key={label}
+                to={to}
+                className="relative flex flex-1 items-center justify-center"
+              >
+                {active && (
+                  <motion.div
+                    layoutId="spider-active-bubble"
+                    transition={{
+                      type: "spring",
+                      stiffness: 500,
+                      damping: 30,
+                      mass: 0.7,
+                    }}
+                    className="absolute inset-0 rounded-[18px] rounded-tl-[28px] rounded-br-[28px] bg-[#e50914] shadow-[0_0_30px_rgba(229,9,20,0.4)]"
+                  >
+                    {/* Web detail */}
+                    <div className="absolute inset-0 overflow-hidden rounded-[18px] rounded-tl-[28px] rounded-br-[28px] opacity-10">
+                      <svg
+                        viewBox="0 0 100 60"
+                        className="h-full w-full"
+                        fill="none"
+                      >
+                        <path
+                          d="M50 30 L50 0 M50 30 L50 60 M50 30 L0 30 M50 30 L100 30"
+                          stroke="black"
+                          strokeWidth="0.7"
+                        />
+                        <circle
+                          cx="50"
+                          cy="30"
+                          r="12"
+                          stroke="black"
+                          strokeWidth="0.7"
+                        />
+                        <circle
+                          cx="50"
+                          cy="30"
+                          r="24"
+                          stroke="black"
+                          strokeWidth="0.7"
+                        />
+                        <circle
+                          cx="50"
+                          cy="30"
+                          r="38"
+                          stroke="black"
+                          strokeWidth="0.7"
+                        />
+                      </svg>
+                    </div>
+                  </motion.div>
+                )}
+                <motion.div
+                  animate={{
+                    y: active ? -1 : 0,
+                    scale: active ? 1 : 0.95,
+                  }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 500,
+                    damping: 25,
+                  }}
+                  className={`relative z-10 flex h-12 items-center justify-center gap-2 px-3 text-xs font-medium ${
+                    active ? "text-black" : "text-white/45"
                   }`}
                 >
-                  <div className="relative">
-                    <Icon className="h-5 w-5" strokeWidth={1.6} />
-                    {active && (
-                      <div className="absolute -bottom-2 left-1/2 h-1 w-1 -translate-x-1/2 rounded-full bg-foreground animate-pulse" />
-                    )}
-                  </div>
-                  {label}
-                </Link>
-              </li>
+                  <Icon size={19} strokeWidth={active ? 2.5 : 1.8} />
+                  {active && (
+                    <motion.span
+                      initial={{ opacity: 0, width: 0 }}
+                      animate={{ opacity: 1, width: "auto" }}
+                      transition={{ duration: 0.18 }}
+                      className="overflow-hidden whitespace-nowrap"
+                    >
+                      {label}
+                    </motion.span>
+                  )}
+                </motion.div>
+              </Link>
             );
           })}
-        </ul>
+          {/* tiny spider decoration */}
+          <motion.div
+            animate={{
+              y: [0, 3, 0],
+            }}
+            transition={{
+              duration: 3,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            className="pointer-events-none absolute -top-8 right-6 text-white/20"
+          >
+            <Sparkles size={12} />
+          </motion.div>
+        </div>
       </nav>
     </>
   );
