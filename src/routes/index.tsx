@@ -125,7 +125,7 @@ function Index() {
   useScrollAnimation();
 
   return (
-    <div className="min-h-screen bg-background pb-28 lg:pb-0 page-transition">
+    <div className="min-h-screen bg-background pb-32 lg:pb-0 page-transition">
       <Navigation />
 
       <main id="top" className="mx-auto max-w-[1400px] px-5 sm:px-8 lg:px-10">

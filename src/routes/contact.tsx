@@ -282,7 +282,7 @@ function ContactPage() {
   const [showCalendar, setShowCalendar] = React.useState(false);
 
   return (
-    <div className="min-h-screen bg-background pb-28 lg:pb-0 page-transition">
+    <div className="min-h-screen bg-background pb-32 lg:pb-0 page-transition">
       <Navigation />
       
       <main className="mx-auto max-w-[1400px] px-5 py-24 sm:px-8 lg:px-10">

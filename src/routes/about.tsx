@@ -30,10 +30,10 @@ function AboutPage() {
   useScrollAnimation();
 
   return (
-    <div className="min-h-screen bg-background pb-28 lg:pb-0 page-transition">
+    <div className="min-h-screen bg-background pb-32 lg:pb-0 page-transition">
       <Navigation />
       
-      <main className="mx-auto max-w-6xl px-5 py-24 sm:px-8">
+      <main className="mx-auto max-w-6xl px-5 py-16 sm:py-24 sm:px-8">
         {/* Header */}
         <header className="mb-20">
           <p className="text-eyebrow">about</p>

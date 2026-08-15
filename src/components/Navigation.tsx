@@ -104,7 +104,7 @@ export function Navigation() {
       )}
 
       {/* Mobile Bottom Nav - iOS Style with Animated Bubble */}
-      <nav className="fixed bottom-5 left-1/2 z-50 w-[calc(100%-32px)] max-w-md -translate-x-1/2 rounded-[28px] border border-white/10 bg-black/70 p-2 shadow-[0_20px_60px_rgba(0,0,0,0.45)] backdrop-blur-2xl lg:hidden">
+      <nav className="fixed bottom-6 left-1/2 z-50 w-[calc(100%-32px)] max-w-md -translate-x-1/2 rounded-[28px] border border-white/10 bg-black/80 p-2 shadow-[0_20px_60px_rgba(0,0,0,0.5)] backdrop-blur-3xl lg:hidden">
         <div className="relative flex items-center justify-between">
           {[
             { label: "home", icon: Home, to: "/" },
@@ -128,13 +128,13 @@ export function Navigation() {
                       damping: 30,
                       mass: 0.7,
                     }}
-                    className="absolute inset-0 rounded-[18px] rounded-tl-[28px] rounded-br-[28px] bg-white shadow-[0_0_30px_rgba(255,255,255,0.4)]"
+                    className="absolute inset-0 rounded-[20px] bg-white/95 shadow-[0_0_20px_rgba(255,255,255,0.3),0_8px_32px_rgba(255,255,255,0.1)] backdrop-blur-md"
                   >
-                    {/* Spider web SVG overlay */}
+                    {/* Spider web SVG overlay - subtle */}
                     <img
                       src="/button.svg"
                       alt=""
-                      className="pointer-events-none absolute -right-12 -top-12 h-40 w-40 opacity-40"
+                      className="pointer-events-none absolute -right-8 -top-8 h-32 w-32 opacity-20"
                     />
                   </motion.div>
                 )}
