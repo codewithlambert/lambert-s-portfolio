@@ -146,70 +146,9 @@
   }
 }
 
-@keyframes swing {
-  0%, 100% {
-    transform: rotate(-3deg);
-    transform-origin: top center;
-  }
-  50% {
-    transform: rotate(3deg);
-    transform-origin: top center;
-  }
-}
-
-@keyframes typewriter {
-  0% {
-    width: 0;
-  }
-  100% {
-    width: 100%;
-  }
-}
-
-@keyframes blink {
-  0%, 100% {
-    border-color: transparent;
-  }
-  50% {
-    border-color: hsl(var(--foreground));
-  }
-}
-
-@keyframes loading-bar {
-  0% {
-    transform: translateX(-100%);
-  }
-  100% {
-    transform: translateX(400%);
-  }
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-.animate-float {
-  animation: float 6s ease-in-out infinite;
-}
-
 .animate-marquee-rtl {
-  animation: marquee-rtl 30s linear infinite;
+  animation: marquee-rtl 20s linear infinite;
+  display: flex;
 }
 
 .animate-swing {

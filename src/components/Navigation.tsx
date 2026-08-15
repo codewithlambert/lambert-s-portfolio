@@ -128,84 +128,14 @@ export function Navigation() {
                       damping: 30,
                       mass: 0.7,
                     }}
-                    className="absolute inset-0 rounded-[18px] rounded-tl-[28px] rounded-br-[28px] bg-[#e50914] shadow-[0_0_30px_rgba(229,9,20,0.5)]"
+                    className="absolute inset-0 rounded-[18px] rounded-tl-[28px] rounded-br-[28px] bg-white shadow-[0_0_30px_rgba(255,255,255,0.4)]"
                   >
-                    {/* Realistic Spider-Man Web Pattern */}
-                    <div className="absolute inset-0 overflow-hidden rounded-[18px] rounded-tl-[28px] rounded-br-[28px]">
-                      <svg
-                        viewBox="0 0 100 60"
-                        className="h-full w-full"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        {/* Radial spokes from off-center anchor point */}
-                        <g stroke="white" strokeWidth="0.4" opacity="0.25">
-                          {/* Main anchor point at (35, 28) - off-center */}
-                          <line x1="35" y1="28" x2="10" y2="5" />
-                          <line x1="35" y1="28" x2="25" y2="8" />
-                          <line x1="35" y1="28" x2="45" y2="6" />
-                          <line x1="35" y1="28" x2="65" y2="10" />
-                          <line x1="35" y1="28" x2="85" y2="18" />
-                          <line x1="35" y1="28" x2="92" y2="32" />
-                          <line x1="35" y1="28" x2="88" y2="48" />
-                          <line x1="35" y1="28" x2="68" y2="55" />
-                          <line x1="35" y1="28" x2="42" y2="56" />
-                          <line x1="35" y1="28" x2="18" y2="52" />
-                          <line x1="35" y1="28" x2="5" y2="40" />
-                          <line x1="35" y1="28" x2="8" y2="22" />
-                        </g>
-                        
-                        {/* Irregular curved connecting strands - creating organic web cells */}
-                        <g stroke="white" strokeWidth="0.35" opacity="0.3" fill="none">
-                          {/* Inner web layer - irregular curves */}
-                          <path d="M 25 8 Q 30 12, 35 15" />
-                          <path d="M 35 15 Q 40 12, 45 6" />
-                          <path d="M 45 6 Q 52 8, 65 10" />
-                          <path d="M 65 10 Q 72 14, 85 18" />
-                          <path d="M 85 18 Q 88 24, 92 32" />
-                          <path d="M 92 32 Q 90 38, 88 48" />
-                          <path d="M 88 48 Q 80 50, 68 55" />
-                          <path d="M 68 55 Q 58 56, 42 56" />
-                          <path d="M 42 56 Q 32 54, 18 52" />
-                          <path d="M 18 52 Q 12 48, 5 40" />
-                          <path d="M 5 40 Q 6 32, 8 22" />
-                          <path d="M 8 22 Q 12 12, 25 8" />
-                          
-                          {/* Middle web layer - more irregular */}
-                          <path d="M 18 12 Q 22 18, 28 20" />
-                          <path d="M 28 20 Q 35 20, 42 18" />
-                          <path d="M 42 18 Q 50 18, 62 20" />
-                          <path d="M 62 20 Q 70 24, 78 28" />
-                          <path d="M 78 28 Q 80 34, 82 42" />
-                          <path d="M 82 42 Q 78 46, 68 50" />
-                          <path d="M 68 50 Q 58 50, 45 49" />
-                          <path d="M 45 49 Q 35 48, 22 46" />
-                          <path d="M 22 46 Q 15 42, 10 35" />
-                          <path d="M 10 35 Q 10 26, 12 18" />
-                          <path d="M 12 18 Q 14 14, 18 12" />
-                          
-                          {/* Outer web layer - extending beyond */}
-                          <path d="M 15 6 Q 20 14, 26 18" />
-                          <path d="M 26 18 Q 32 20, 40 21" />
-                          <path d="M 40 21 Q 50 22, 64 24" />
-                          <path d="M 64 24 Q 72 28, 84 34" />
-                          <path d="M 84 34 Q 86 40, 86 50" />
-                          <path d="M 86 50 Q 82 54, 72 57" />
-                          <path d="M 72 57 Q 60 58, 44 58" />
-                          <path d="M 44 58 Q 32 56, 16 53" />
-                          <path d="M 16 53 Q 8 48, 4 38" />
-                          <path d="M 4 38 Q 4 28, 6 18" />
-                          <path d="M 6 18 Q 9 10, 15 6" />
-                          
-                          {/* Random connecting threads for organic feel */}
-                          <path d="M 30 10 Q 32 16, 38 20" strokeWidth="0.3" opacity="0.2" />
-                          <path d="M 55 14 Q 60 20, 68 26" strokeWidth="0.3" opacity="0.2" />
-                          <path d="M 75 36 Q 70 40, 62 44" strokeWidth="0.3" opacity="0.2" />
-                          <path d="M 48 52 Q 40 50, 28 48" strokeWidth="0.3" opacity="0.2" />
-                          <path d="M 14 30 Q 18 28, 24 26" strokeWidth="0.3" opacity="0.2" />
-                        </g>
-                      </svg>
-                    </div>
+                    {/* Spider web SVG overlay */}
+                    <img
+                      src="/button.svg"
+                      alt=""
+                      className="pointer-events-none absolute -right-12 -top-12 h-40 w-40 opacity-40"
+                    />
                   </motion.div>
                 )}
                 <motion.div
@@ -219,7 +149,7 @@ export function Navigation() {
                     damping: 25,
                   }}
                   className={`relative z-10 flex h-12 items-center justify-center gap-2 px-3 text-xs font-medium ${
-                    active ? "text-[#CFCFCF]" : "text-white/45"
+                    active ? "text-black" : "text-white/45"
                   }`}
                 >
                   <Icon size={19} strokeWidth={active ? 2.5 : 1.8} />

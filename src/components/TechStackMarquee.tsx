@@ -16,12 +16,12 @@ export function TechStackMarquee() {
 
   return (
     <div className="relative overflow-hidden border-y border-border bg-card/50 py-4">
-      <div className="flex animate-marquee-rtl gap-8 whitespace-nowrap">
+      <div className="flex animate-marquee-rtl gap-8 whitespace-nowrap will-change-transform">
         {/* First set */}
         {stacks.map((stack, i) => (
           <span
             key={`first-${i}`}
-            className="text-sm font-medium text-muted-foreground"
+            className="inline-block text-sm font-medium text-muted-foreground"
           >
             {stack}
           </span>
@@ -30,7 +30,7 @@ export function TechStackMarquee() {
         {stacks.map((stack, i) => (
           <span
             key={`second-${i}`}
-            className="text-sm font-medium text-muted-foreground"
+            className="inline-block text-sm font-medium text-muted-foreground"
           >
             {stack}
           </span>
@@ -39,7 +39,7 @@ export function TechStackMarquee() {
         {stacks.map((stack, i) => (
           <span
             key={`third-${i}`}
-            className="text-sm font-medium text-muted-foreground"
+            className="inline-block text-sm font-medium text-muted-foreground"
           >
             {stack}
           </span>

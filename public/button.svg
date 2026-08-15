@@ -1,0 +1,47 @@
+<svg width="240" height="240" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" opacity="0.72">
+    <!-- Main web spokes -->
+    <path d="M118 121 C101 92 91 60 89 17"></path>
+    <path d="M118 121 C126 88 143 53 166 20"></path>
+    <path d="M118 121 C150 107 183 92 221 91"></path>
+    <path d="M118 121 C149 135 179 154 209 183"></path>
+    <path d="M118 121 C124 154 125 191 119 225"></path>
+    <path d="M118 121 C92 145 66 170 43 211"></path>
+    <path d="M118 121 C82 123 48 119 15 105"></path>
+    <path d="M118 121 C91 102 65 76 37 42"></path>
+
+    <!-- Inner irregular web -->
+    <path d="M105 99 C119 94 136 96 150 105"></path>
+    <path d="M91 78 C112 72 138 76 157 91"></path>
+    <path d="M79 57 C108 49 143 55 169 76"></path>
+    <path d="M67 39 C103 28 149 35 181 61"></path>
+
+    <!-- Right / lower web -->
+    <path d="M150 105 C161 119 166 135 164 150"></path>
+    <path d="M157 91 C177 108 185 130 181 154"></path>
+    <path d="M169 76 C194 98 204 125 199 157"></path>
+    <path d="M181 61 C209 87 222 120 215 160"></path>
+
+    <!-- Lower-left web -->
+    <path d="M105 143 C94 130 78 126 61 126"></path>
+    <path d="M110 160 C91 145 68 140 48 143"></path>
+    <path d="M116 182 C91 162 60 157 37 163"></path>
+    <path d="M119 205 C88 183 53 178 29 187"></path>
+
+    <!-- Lower-right web -->
+    <path d="M129 143 C143 140 157 144 169 153"></path>
+    <path d="M125 161 C147 157 168 165 184 181"></path>
+    <path d="M122 184 C149 179 177 190 196 210"></path>
+    <path d="M120 205 C150 201 180 214 193 228"></path>
+
+    <!-- Outer loose strands -->
+    <path d="M89 17 C77 40 67 60 61 80"></path>
+    <path d="M166 20 C157 40 151 59 150 78"></path>
+    <path d="M221 91 C198 88 180 89 162 96"></path>
+    <path d="M209 183 C192 170 178 160 165 154"></path>
+    <path d="M119 225 C119 210 119 198 118 184"></path>
+    <path d="M43 211 C54 191 65 174 79 160"></path>
+    <path d="M15 105 C36 111 56 115 76 115"></path>
+    <path d="M37 42 C54 60 68 75 84 87"></path>
+  </g>
+</svg>
