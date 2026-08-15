@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Navigation } from "@/components/Navigation";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { useCounterAnimation } from "@/hooks/useCounterAnimation";
 
 const skills = ["javascript", "mysql", "postgresql", "rest apis", "git", "react", "node.js", "next.js", "typescript", "tailwind css", "supabase", "firebase", "groq api", "vercel", "cloudflare"];
 const experience = [

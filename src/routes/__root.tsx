@@ -6,6 +6,9 @@ import {
   useRouter,
 } from "@tanstack/react-router";
 import { Footer } from "@/components/Footer";
+import { CustomCursor } from "@/components/CustomCursor";
+import { CursorTrail } from "@/components/CursorTrail";
+import { SmoothScroll } from "@/components/SmoothScroll";
 
 import appCss from "../styles.css?url";
 
@@ -103,6 +106,9 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <CustomCursor />
+      <CursorTrail />
+      <SmoothScroll />
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <div id="page-content">
         <Outlet />
